@@ -1,7 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
 import { useToolApi } from './useToolApi.js';
-import { ToolHero, ScoreCard, CrossPromo, track } from './kit.js';
+import { ToolHero, ScoreCard, CrossPromo, track } from '@bilkobibitkov/host-kit';
+
+const AUDIENCE_DECODER_THEME = {
+  heroGradient: 'from-[#1a0f2e] via-[#120a1f] to-[#1a0f2e]',
+  glowColor: 'rgba(168,85,247,0.14)',
+  accentText: 'text-purple-400',
+  accentTextLight: 'text-purple-500',
+};
+
+const CROSS_PROMO_ITEMS = [
+  {
+    name: 'ThreadGrader',
+    href: 'https://bilko.run/products/thread-grader',
+    hook: "Know your audience. Now write threads they'll actually share.",
+  },
+  {
+    name: 'EmailForge',
+    href: 'https://bilko.run/products/email-forge',
+    hook: "Know your people. Now write emails they'll actually open.",
+  },
+];
 
 // ── Types ───────────────────────────────────────────────────────────────────
 
@@ -710,6 +730,7 @@ export function AudienceDecoderPage() {
   return (
     <div className="min-h-screen bg-warm-50">
       <ToolHero
+        theme={AUDIENCE_DECODER_THEME}
         title="Audience Decoder"
         tagline="Decode who actually follows you, what content lands, and how to grow."
       >
@@ -803,7 +824,7 @@ export function AudienceDecoderPage() {
         {/* Single result */}
         {r && (
           <>
-            <ScoreCard score={r.overall_score} grade={r.grade} verdict={r.headline} toolName="Audience Decoder" />
+            <ScoreCard score={r.overall_score} grade={r.grade} verdict={r.headline} toolName="Audience Decoder" theme={AUDIENCE_DECODER_THEME} />
             <div className="text-center">
               <button onClick={saveSnapshot} className="text-xs px-4 py-2 border border-fire-200 text-fire-600 hover:bg-fire-50 rounded-lg transition-colors">
                 Save Audience Snapshot
@@ -857,7 +878,7 @@ export function AudienceDecoderPage() {
         )}
       </div>
 
-      {r && <CrossPromo />}
+      {r && <CrossPromo items={CROSS_PROMO_ITEMS} />}
 
       {/* ── Long-form below-fold content ──────────────────────────── */}
       {!r && !cr && !loading && (
