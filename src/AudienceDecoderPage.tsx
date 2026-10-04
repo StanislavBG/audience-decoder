@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
 import { useToolApi } from './useToolApi.js';
-import { ToolHero, ScoreCard, CrossPromo, track } from '@bilkobibitkov/host-kit';
+import { ToolHero, ScoreCard, CrossPromo, track } from 'host-kit';
 
 const AUDIENCE_DECODER_THEME = {
   heroGradient: 'from-[#1a0f2e] via-[#120a1f] to-[#1a0f2e]',
